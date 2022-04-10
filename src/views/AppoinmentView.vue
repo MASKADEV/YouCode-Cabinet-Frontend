@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="w-screen h-screen bg-gray-50">
+    <div class="w-screen h-full bg-gray-100">
         <div class ="container mx-auto flex flex-col h-full">
             <div class="flex flex-row items-center justify-center">
                 <h1 class ="text-center font-[Poppins] font-semibold text-3xl text-indigo-400 mt-4">APPOINTMENT</h1>

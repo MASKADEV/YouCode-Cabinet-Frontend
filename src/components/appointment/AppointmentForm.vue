@@ -1,13 +1,13 @@
 <template >
     <div class="w-full h-full flex flex-col mt-4 justify-center items-center">
-        <form @submit.prevent="">
+        <form @submit.prevent="submitForm">
             <div class="flex flex-col font-[Poppins] font-semibold ">
                 <label for="date">Date</label>
-                <input @change="handleChange" v-model="date"  type="date" :min="currentDate" class="bg-white px-3 py-2 w-[240px] shadow-sm rounded" id="date">
+                <input required @change="handleChange" v-model="date"  type="date" :min="currentDate" class="bg-white px-3 py-2 w-[240px] shadow-sm rounded" id="date">
             </div>
             <div class="flex flex-col font-[Poppins] font-semibold  mt-4">
                 <label for="service_type">Service Type</label>
-                <select @change="serviceChange" class="px-3 py-2 w-[240px] shadow-sm rounded" v-model="services_type" id="service_type">
+                <select v-model="services_type" @change="serviceChange" class="px-3 py-2 w-[240px] shadow-sm rounded" id="service_type">
                   <option>Teeth Cleaning</option>
                   <option>Fillings and Restorations</option>
                   <option>Tooth Extractions</option>
@@ -18,7 +18,7 @@
             </div>
             <div class="flex flex-col font-[Poppins] font-semibold  mt-4">
                 <label for="time">Time</label>
-                <select class="px-3 py-2 w-[240px] shadow-sm rounded" name="" id="time">
+                <select v-model="pickedetime" class="px-3 py-2 w-[240px] shadow-sm rounded" name="" id="time">
                   <option v-for="timess in times" :key="timess.time">{{timess.time}}</option>
                 </select>
             </div>
@@ -33,6 +33,7 @@
 </template>
 <script>
 import DateService from '@/services/date';
+import HandleApi from '@/services/HandleApi';
 import axios from 'axios';
 
 export default {
@@ -42,11 +43,12 @@ export default {
             times : [{time : '08:00', booked : false}, {time : '09:00', booked : false}, {time : '10:00', booked : false}, 
                     {time : '11:00', booked : false}, {time : '14:00', booked : false}, {time : '15:00', booked : false}, 
                     {time : '16:00', booked : false}, {time : '17:00', booked : false}, 
-            ],
+            ],            
             date: '',
             currentDate : "",
-            services_type : "",
+            services_type : '',
             price : 0,
+            pickedetime : '',
         }
     },
     methods : {
@@ -57,8 +59,14 @@ export default {
             let Alldata = res.data;
             Alldata.map(data => {
                 timesBooked.push(data.booking_time);
-            })
-            console.log(timesBooked);
+            }),
+            this.times.forEach(element=>{if(timesBooked.includes(element['time']))
+            {element['booked']=true}
+            else {
+                element['booked']=false;
+            }
+            });
+            this.times = this.times.filter(elee => !elee.booked);
         },
         serviceChange() {
             switch (this.services_type) {
@@ -83,6 +91,18 @@ export default {
                 default:
                     this.price = 0
             }
+        },
+        submitForm() {
+            const api = new HandleApi();
+            let forminput = {
+                user_id : localStorage.getItem('id'),
+                booking_date: this.date,
+                booking_time : this.pickedetime,
+                services_type: this.services_type,
+                price : this.price
+            };
+            api.Appointemnt('http://172.16.139.9/Booking_Medical_Backend/users/addBooking', forminput)
+            window.location.reload();
         }
     },
     mounted() {
