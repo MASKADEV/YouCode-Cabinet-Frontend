@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+<img alt="" sizes="100vw" srcset="https://simplonline.co/_next/image?url=https%3A%2F%2Fsimplonline-v3-prod.s3.eu-west-3.amazonaws.com%2Fmedia%2Fimage%2Fwebp%2F00de841a-5b45-4015-a15c-c671047e8fce.webp&w=1280&q=75">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div class="sc-7lcum6-0 edCusw"><h2 class="ekeyz-0 dPTSJD">Project context</h2><div><div><p class="ekeyz-0 jasXoh">Un cabinet dentaire souhaite informatiser son système de prise de rendez-vous, afin d'offrir aux utilisateurs la possibilité de renseigner leurs informations et de réserver des créneaux pour leurs visites.</p>
+<p class="ekeyz-0 jasXoh">une premiére page d'authentification (par référence unique) / enregistrement d'un nouvel utilisateur (Nom, prénom, âge, date de naissance ... )) résulte une référence unique générée par le système qui identifie l'utilisateur,qui permette ensuite la redirection vers une page qui liste l'historique des rendez-vous déjà pris [ ex : Table RDV caractérisé par sujet RDV,Date , créneau ...] , ou il a accès à modifier (sujet RDV , Date , *nouveau créneau libre*) ou supprimer ces rendez-vous ou de prendre un nouveau rendez-vous (*Créneau libre*).</p>
+<p class="ekeyz-0 jasXoh">​</p>
+<p class="ekeyz-0 jasXoh">Un support de présentation doit être réalisé pour présenter le travail complet.</p>
+<p class="ekeyz-0 jasXoh">Technologies :</p>
+<p class="ekeyz-0 jasXoh">​</p>
+<p class="ekeyz-0 jasXoh">Backend : API PHP (POO) en respectant le design pattern MVC.</p>
+<p class="ekeyz-0 jasXoh">Frontend : Choix entre VueJS / ReactJS / Native</p>
+<p class="ekeyz-0 jasXoh">​</p>
+<p class="ekeyz-0 jasXoh">Bonus :</p>
+<p class="ekeyz-0 jasXoh">Authentification en utilisant le JWT(Json Web Token) au lieu de la réference unique.</p>
+<p class="ekeyz-0 jasXoh">Dashboard Admin pour gerer les utilisateurs et lister tous les RDV.</p>
+<p class="ekeyz-0 jasXoh">​</p>
+<p class="ekeyz-0 jasXoh">​</p>
+</div></div></div>
 
-## Available Scripts
+<div class="sc-7lcum6-0 edCusw"><h2 class="ekeyz-0 dPTSJD">Learning methods</h2><div><div><p class="ekeyz-0 jasXoh">Modalité de travail : Travail Individuel</p>
+<p class="ekeyz-0 jasXoh">Temporalité : 6 Jours</p>
+<p class="ekeyz-0 jasXoh">​</p>
+<p class="ekeyz-0 jasXoh">Date Limite : le 4 Avril 2022</p>
+</div></div></div>
 
-In the project directory, you can run:
+<div class="sc-7lcum6-0 edCusw"><h2 class="ekeyz-0 dPTSJD">Deliverables</h2><p class="ekeyz-0 jasXoh">Livrables :
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Planification du brief ( Taches , Priorités , Statuts ,  Outil : Trello , ..... ). (1 jour)
+Repo Github contenant l'application. (5 jours )
+Un support de présentation du brief (le 4 avril 2022) .</p></div>
