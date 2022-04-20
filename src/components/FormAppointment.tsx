@@ -8,12 +8,12 @@ const FormAppointment = () => {
     const [service, setService] = useState<string>("");
     const [time, setTime] = useState<string>("");
     const [show, setshow] = useState(false);
-    const [data, setdata] = useState({});
+    const [booked_time, setbooked_time] = useState<Array<string>>([]);
     let api = new ApiHandler();
 
     async function fetchbookedTrip() {
        let {data} = await axios.post("http://localhost/cabinet-restapi/users/checkBookedTime", 
-                JSON.stringify({'booking_date' : '2022-05-20'}),
+                JSON.stringify({'booking_date' : date}),
                 {
                     headers: {
                         'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -22,7 +22,9 @@ const FormAppointment = () => {
                     },
                   },
                 );
-        console.log((JSON.stringify(data, null, 4)));
+        // data.map((ele) => {
+        //     booked_time.push(ele.time);
+        // })
         
     }
 
