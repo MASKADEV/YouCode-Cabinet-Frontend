@@ -11,8 +11,9 @@ function App() {
       <NavBar />
       <BrowserRouter>
         <Routes>
-          <Route path='/appointment' element= { <Home/> } />
-          <Route path='/' element= { <Auth/> } />
+          {/* <Route path='/appointment' element= { <Home/> } /> */}
+          {/* <Route path='/' element= { <Auth/> } /> */}
+          <Route path='/' element= { <Home/> } />
         </Routes>
       </BrowserRouter>
     </div>

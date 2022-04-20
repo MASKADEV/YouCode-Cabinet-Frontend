@@ -1,8 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
+import FormAppointment from '../../components/FormAppointment'
 
 const Home = () => {
+
   return (
-    <div>Home</div>
+    <div className='mt-11'>
+        <FormAppointment />
+        <div></div>
+    </div>
   )
 }
 
