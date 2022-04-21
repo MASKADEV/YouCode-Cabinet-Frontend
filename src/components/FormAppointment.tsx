@@ -1,6 +1,9 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-import ApiHandler from '../services/Api';
+// import ApiHandler from '../services/Api';
+
+
+// interface 
 
 const FormAppointment = () => {
 
@@ -8,10 +11,11 @@ const FormAppointment = () => {
     const [service, setService] = useState<string>("");
     const [time, setTime] = useState<string>("");
     const [show, setshow] = useState(false);
-    const [booked_time, setbooked_time] = useState<Array<string>>([]);
-    
-    // let api = new ApiHandler();
-    const availableTime = [{'time' : '08:00', 'booked' : false}, {'time' : '09:00', 'booked' : false}, {'time' : '10:00', 'booked' : false}, 
+    const [availableTime, setAvailableTime] = useState<object[] | null>([{}]);
+
+    const booked_time : string[] = [];
+
+    const times = [{'time' : '08:00', 'booked' : false}, {'time' : '09:00', 'booked' : false}, {'time' : '10:00', 'booked' : false}, 
     {'time' : '11:00', 'booked' : false}, {'time' : '14:00', 'booked' : false}, {'time' : '15:00', 'booked' : false}, 
     {'time' : '16:00', 'booked' : false}, ];
 
@@ -31,14 +35,17 @@ const FormAppointment = () => {
             booked_time.push(ele.time);
         });
 
-        availableTime.forEach((element) => {
+        times.forEach((element) => {
             if(booked_time.includes(element['time']))
-            {element['booked']=true}
+            {
+                element['booked']=true;
+            }
             else {
                 element['booked']=false;
             }
         }); 
-        // console.log();
+        setAvailableTime(times);
+        // console.log(availableTime);
     }
 
     useEffect( () => {
@@ -59,7 +66,7 @@ const FormAppointment = () => {
                     <option value="Teeth Whitening">Teeth Whitening</option>
                 </select>
                 <select value={time} onChange={(e) => {setTime(e.target.value)}} className='w-[220px] mt-4 py-2 border-2 border-gray-200 shadow-sm rounded-md px-1' name="" id="">
-                    {availableTime.map((element) => {
+                    {availableTime?.map((element: any) => {
                         if(!element.booked){
                             return <option id={element.time} value={element.time}>{element.time}</option>
                         }
