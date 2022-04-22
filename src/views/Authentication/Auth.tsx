@@ -1,20 +1,24 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import CustomInput from '../../components/CustomInput';
+import Signin from './signin/Signin';
+import Signup from './signup/Signup';
 
 const Auth = () => {
 
-    const [id, setId] = useState<string>("")
-    console.log(id);
+  const navigate = useNavigate();
+  if(localStorage.getItem('logedin') === 'true'){
+    navigate('/');
+  }
+    
 
   return (
-    <div className='w-screen h-screen bg-gray-100'>
-        <div className='container mx-auto'>
-            <form onSubmit={(e) => {e.preventDefault(); console.log(e)}} className='flex flex-col'>
-                <CustomInput setId={setId} id={id} placeholder ="Enter ID" />
-            </form>
+    <div className='w-screen h-screen bg-gray-100 flex md:flex-row flex-col'>
+        <div>
+          <Signin />
         </div>
         <div>
-
+          <Signup />
         </div>
     </div>
   )

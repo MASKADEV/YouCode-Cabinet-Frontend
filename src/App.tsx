@@ -1,8 +1,8 @@
-import React from "react";
 import NavBar from './components/NavBar';
 import Home from "./views/Home/Home";
 import Auth from "./views/Authentication/Auth";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+import ProtectedRoute from './components/ProtectedRoute';
 
 
 function App() {
@@ -11,9 +11,16 @@ function App() {
       <NavBar />
       <BrowserRouter>
         <Routes>
-          {/* <Route path='/appointment' element= { <Home/> } /> */}
-          {/* <Route path='/' element= { <Auth/> } /> */}
-          <Route path='/' element= { <Home/> } />
+          {/* Private Routes */}
+          <Route path="/" element={<ProtectedRoute />}>
+            <Route path='/' element = {<Outlet />}>
+              <Route path='/' element={<Navigate  replace to="home" />} />
+              <Route path='/home' element={<Home />}/>
+            </Route>
+          </Route>
+
+          {/* Public Route */}
+          <Route path='/auth' element= { <Auth /> } />
         </Routes>
       </BrowserRouter>
     </div>
