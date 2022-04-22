@@ -105,28 +105,31 @@ const FormAppointment = () => {
   return (
     <div className={`flex-col font-[Poppins] relative items-center flex`}>
         <h1 onClick={() => {setshow(!show)}} className='hover:cursor-pointer shadow-md text-center text-1xl text-indigo-500 font-semibold px-4 py-2 bg-white rounded-lg border-2 border-black w-[10rem]'>Make appointment</h1>
-        <div className={`${show ? 'flex' : 'hidden'} absolute top-[1rem] px-4 py4 md:w-[80%] w-[60%] max-w-[500px] rounded-xl shadow-xl  md:h-[35rem] h-[25rem] bg-white border-2 border-gray-100`}>
-            <form onSubmit={bookNow} className='flex flex-col items-center w-full h-full justify-center '>
-                <input required type="date" value={date} onChange={(e) => {setDate(e.target.value)}} className='w-[220px] py-2 px-2 border-2 border-gray-200 shadow-sm rounded-md' />
-                <select required value={service} onChange={(e) => {setService(e.target.value)}} className='w-[220px] mt-4 py-2 border-2 border-gray-200 shadow-sm rounded-md px-1' name="" id="">
-                    <option key={1} value="Teeth Cleanings">Teeth Cleanings</option>
-                    <option key={2} value="Tooth Extractions">Tooth Extractions</option>
-                    <option key={3} value="Teeth Whitening">Teeth Whitening</option>
-                </select>
-                <select required value={time} onChange={(e) => {setTime(e.target.value)}} className='w-[220px] mt-4 py-2 border-2 border-gray-200 shadow-sm rounded-md px-1' name="" id="">
-                    {availableTime?.map((element: any) => {
-                        if(!element.booked){
-                            return <option key={element.time} value={element.time}>{element.time}</option>
-                        }else {
-                            return '';
-                        }
-                    })}
-                </select>
-                <div className='flex flex-row items-center'>
-                    <p className='font-[Poppins] mt-4 mr-2 font-semibold text-3xl'>{price}$</p>
-                    <button className='bg-indigo-600 ml-2 text-white px-4 shadow-md py-2 rounded-md w-[140px] mt-4'>Book</button>
-                </div>
-            </form>
+        <div className={`${show ? 'flex' : 'hidden'} absolute my-auto  rounded-xl shadow-xl bg-white border-2 border-gray-100`}>
+            <div className='relative'>
+                <img onClick={() => {setshow(!show)}} className='w-[1rem] absolute right-4 top-3 hover:cursor-pointer' src="https://www.svgrepo.com/show/38282/delete.svg" alt='cancel button'/>
+                <form onSubmit={bookNow} className='py-11 px-11 flex flex-col items-center w-full h-full justify-center '>
+                    <input required type="date" value={date} onChange={(e) => {setDate(e.target.value)}} className='w-[220px] py-2 px-2 border-2 border-gray-200 shadow-sm rounded-md' />
+                    <select required value={service} onChange={(e) => {setService(e.target.value)}} className='w-[220px] mt-4 py-2 border-2 border-gray-200 shadow-sm rounded-md px-1' name="" id="">
+                        <option key={1} value="Teeth Cleanings">Teeth Cleanings</option>
+                        <option key={2} value="Tooth Extractions">Tooth Extractions</option>
+                        <option key={3} value="Teeth Whitening">Teeth Whitening</option>
+                    </select>
+                    <select required value={time} onChange={(e) => {setTime(e.target.value)}} className='w-[220px] mt-4 py-2 border-2 border-gray-200 shadow-sm rounded-md px-1' name="" id="">
+                        {availableTime?.map((element: any) => {
+                            if(!element.booked){
+                                return <option key={element.time} value={element.time}>{element.time}</option>
+                            }else {
+                                return '';
+                            }
+                        })}
+                    </select>
+                    <div className='flex flex-row items-center'>
+                        <p className='font-[Poppins] mt-4 mr-2 font-semibold text-3xl'>{price}$</p>
+                        <button className='bg-indigo-600 ml-2 text-white px-4 shadow-md py-2 rounded-md w-[140px] mt-4'>Book</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
   )
