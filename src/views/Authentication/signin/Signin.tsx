@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import CustomInput from '../../../components/CustomInput';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -29,7 +29,8 @@ const Signin = () => {
   }
 
   return (
-    <div className='container mx-auto md:w-[600px]'>
+    <div className='container mx-auto px-3 py-4 md:w-[400px]'>
+      <h1 className='text-xl text-indigo-500 font-[Poppins] font-semibold py-4'>Login</h1>
       <form onSubmit={submitForm} className='flex flex-col'>
           <CustomInput setId={setId} id={id} placeholder ="Enter ID" />
       </form>

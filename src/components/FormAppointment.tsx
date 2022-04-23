@@ -13,7 +13,6 @@ const FormAppointment = () => {
     const [time, setTime] = useState<string>("");
     const [show, setshow] = useState(false);
     const [availableTime, setAvailableTime] = useState<object[] | null>([{}]);
-    // const [errors, setErrors] = useState<object | null>({'date' : '', 'service' : '', 'time':''});
     const booked_time : string[] = [];
 
     const times = [{'time' : '08:00', 'booked' : false}, {'time' : '09:00', 'booked' : false}, {'time' : '10:00', 'booked' : false}, 
@@ -48,7 +47,6 @@ const FormAppointment = () => {
                 }
             }); 
             setAvailableTime(times);
-            // console.log(availableTime);
         }
         fetchbookedTrip();
     }, [date])
@@ -78,7 +76,7 @@ const FormAppointment = () => {
                 
                 await axios.post("http://localhost/cabinet-restapi/users/addBooking", 
                     JSON.stringify({
-                        'user_id' : 'maska',
+                        'user_id' : localStorage.getItem('user_id'),
                         'booking_date' : date,
                         'time' : time,
                         'service_type' : service,
@@ -91,6 +89,7 @@ const FormAppointment = () => {
                         },
                     },
                 );
+                window.location.reload();
             }else {
                 if(date !== ''){
                     

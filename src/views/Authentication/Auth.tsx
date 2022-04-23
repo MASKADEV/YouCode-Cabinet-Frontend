@@ -1,6 +1,4 @@
-import React, {useEffect, useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import CustomInput from '../../components/CustomInput';
 import Signin from './signin/Signin';
 import Signup from './signup/Signup';
 
@@ -13,11 +11,11 @@ const Auth = () => {
     
 
   return (
-    <div className='w-screen h-screen bg-gray-100 flex md:flex-row flex-col'>
-        <div>
+    <div className='w-screen h-screen bg-gray-100 flex md:flex-row flex-col justify-center '>
+        <div className=' h-11 md:mt-[20%]'>
           <Signin />
         </div>
-        <div>
+        <div className=' h-11 md:mt-[20%]'>
           <Signup />
         </div>
     </div>
