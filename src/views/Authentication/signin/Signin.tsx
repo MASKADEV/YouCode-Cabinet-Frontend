@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import CustomInput from '../../../components/CustomInput';
 import axios from 'axios';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Signin = () => {
   const [id, setId] = useState<string>("")
@@ -23,6 +23,7 @@ const Signin = () => {
           localStorage.setItem('user_id', data.user_id);
           localStorage.setItem('token', data.token);
           navigate('/');
+          window.location.reload();
         }else {
         }
   }
