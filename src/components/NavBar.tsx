@@ -16,8 +16,8 @@ const NavBar: React.FC = () => {
   return (
       <div>
         {
-          auth ? <div className='h-[60px] shadow-lg font-[Poppins] text-indigo-600 font-bold sm:text-xl text-base text-center items-center flex justify-center'>Home</div> : 
-          <div className='h-[60px] shadow-lg font-[Poppins] text-indigo-600 font-bold sm:text-xl text-base text-center items-center flex justify-center'>Appointment</div>
+          auth ? <div className='h-[60px] shadow font-[Poppins] text-indigo-600 font-bold sm:text-xl text-base text-center items-center flex justify-center'>Home</div> : 
+          <div className='h-[60px] shadow font-[Poppins] text-indigo-600 font-bold sm:text-xl text-base text-center items-center flex justify-center'>Appointment</div>
         }
         <div>
         {
