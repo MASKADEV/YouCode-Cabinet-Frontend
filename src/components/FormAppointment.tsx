@@ -1,25 +1,11 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
-// import ApiHandler from '../services/Api';
+import {props} from '../models/appointmentForm';
+
+const FormAppointment:React.FC<props> = ({update, id,show, setShow, date, setDate, price, setPrice, time, setTime, availableTime, setAvailableTime, times, service, setService, booked_time}) => {
 
 
-// interface 
 
-const FormAppointment = () => {
-
-    const [date, setDate] = useState<string>("");
-    const [service, setService] = useState<string>("");
-    const [price, setPrice] = useState<number>(0);
-    const [time, setTime] = useState<string>("");
-    const [show, setshow] = useState(false);
-    const [availableTime, setAvailableTime] = useState<object[] | null>([{}]);
-    const booked_time : string[] = [];
-
-    const times = [{'time' : '08:00', 'booked' : false}, {'time' : '09:00', 'booked' : false}, {'time' : '10:00', 'booked' : false}, 
-    {'time' : '11:00', 'booked' : false}, {'time' : '14:00', 'booked' : false}, {'time' : '15:00', 'booked' : false}, 
-    {'time' : '16:00', 'booked' : false}, ];
-
-    
 
     useEffect( () => {
         async function fetchbookedTrip() {
@@ -69,11 +55,11 @@ const FormAppointment = () => {
     }, [service]);
     
     const bookNow = async (e : any) => {
+        e.preventDefault();
         try{
-            e.preventDefault();
-            if(date!== "" && time!== "" && service!== "" && price > 0 )
+            if(!update) {
+            if(date!== "" && time!== "" && service!== "" && price > 0 && id! <= 0  )
             {
-                
                 await axios.post("http://localhost/cabinet-restapi/users/addBooking", 
                     JSON.stringify({
                         'user_id' : localStorage.getItem('user_id'),
@@ -95,7 +81,38 @@ const FormAppointment = () => {
                     
                 }
             }
-            setshow(!show);
+            setShow(!show);
+            }else {
+
+                if(date!== "" && time!== "" && service!== "" && price > 0 )
+                {
+                    // console.log('maska');   
+                    // console.log(id);
+                    
+                    let {data} =  await axios.post("http://localhost/cabinet-restapi/users/editBooking", 
+                        JSON.stringify({
+                            'id':id, 
+                            'booking_date' : date,
+                            'time' : time,
+                            'service_type' : service,
+                            'price' : price,
+                        }),
+                        {
+                            headers: {
+                                'Content-Type' : 'application/x-www-form-urlencoded; charset=UTF-8',
+                                Accept: 'application/json',
+                            },
+                        },
+                    );
+
+                    console.log(data);
+                    // window.location.reload();
+                }else {
+                    if(date !== ''){
+                    }
+                }
+                setShow(!show);
+            }
         }catch(err){
             console.log(err);
         }
@@ -103,10 +120,10 @@ const FormAppointment = () => {
 
   return (
     <div className={`flex-col font-[Poppins] relative items-center flex`}>
-        <h1 onClick={() => {setshow(!show)}} className='hover:cursor-pointer shadow-md text-center text-1xl text-indigo-500 font-semibold px-4 py-2 bg-white rounded-lg border-2 border-black w-[10rem]'>Make appointment</h1>
+        
         <div className={`${show ? 'flex' : 'hidden'} absolute my-auto  rounded-xl shadow-xl bg-white border-2 border-gray-100`}>
             <div className='relative'>
-                <img onClick={() => {setshow(!show)}} className='w-[1rem] absolute right-4 top-3 hover:cursor-pointer' src="https://www.svgrepo.com/show/38282/delete.svg" alt='cancel button'/>
+                <img onClick={() => {setShow(!show); setPrice(0); setDate(""); setService(""); setTime("")}} className='w-[1rem] absolute right-4 top-3 hover:cursor-pointer' src="https://www.svgrepo.com/show/38282/delete.svg" alt='cancel button'/>
                 <form onSubmit={bookNow} className='py-11 px-11 flex flex-col items-center w-full h-full justify-center '>
                     <input required type="date" value={date} onChange={(e) => {setDate(e.target.value)}} className='w-[220px] py-2 px-2 border-2 border-gray-200 shadow-sm rounded-md' />
                     <select required value={service} onChange={(e) => {setService(e.target.value)}} className='w-[220px] mt-4 py-2 border-2 border-gray-200 shadow-sm rounded-md px-1' name="" id="">
@@ -115,9 +132,9 @@ const FormAppointment = () => {
                         <option key={3} value="Teeth Whitening">Teeth Whitening</option>
                     </select>
                     <select required value={time} onChange={(e) => {setTime(e.target.value)}} className='w-[220px] mt-4 py-2 border-2 border-gray-200 shadow-sm rounded-md px-1' name="" id="">
-                        {availableTime?.map((element: any) => {
+                        {availableTime?.map((element: any, index) => {
                             if(!element.booked){
-                                return <option key={element.time} value={element.time}>{element.time}</option>
+                                return <option key={index} value={element.time}>{element.time}</option>
                             }else {
                                 return '';
                             }
