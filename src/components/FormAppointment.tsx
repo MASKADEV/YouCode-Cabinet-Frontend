@@ -4,9 +4,6 @@ import {props} from '../models/appointmentForm';
 
 const FormAppointment:React.FC<props> = ({update, id,show, setShow, date, setDate, price, setPrice, time, setTime, availableTime, setAvailableTime, times, service, setService, booked_time}) => {
 
-
-
-
     useEffect( () => {
         async function fetchbookedTrip() {
             booked_time.splice(0, booked_time.length);
@@ -54,6 +51,7 @@ const FormAppointment:React.FC<props> = ({update, id,show, setShow, date, setDat
         }
     }, [service]);
     
+    //Update Function and Booking
     const bookNow = async (e : any) => {
         e.preventDefault();
         try{
@@ -77,18 +75,13 @@ const FormAppointment:React.FC<props> = ({update, id,show, setShow, date, setDat
                 );
                 window.location.reload();
             }else {
-                if(date !== ''){
-                    
+                if(date !== ''){ 
                 }
             }
             setShow(!show);
             }else {
-
                 if(date!== "" && time!== "" && service!== "" && price > 0 )
                 {
-                    // console.log('maska');   
-                    // console.log(id);
-                    
                     let {data} =  await axios.post("http://localhost/cabinet-restapi/users/editBooking", 
                         JSON.stringify({
                             'id':id, 
@@ -104,9 +97,7 @@ const FormAppointment:React.FC<props> = ({update, id,show, setShow, date, setDat
                             },
                         },
                     );
-
-                    console.log(data);
-                    // window.location.reload();
+                    window.location.reload();
                 }else {
                     if(date !== ''){
                     }
