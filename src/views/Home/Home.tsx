@@ -119,8 +119,7 @@ const Home = () => {
                                                   </svg>
                                               </button>
                                           </td>
-                                      </tr>)
-                                )
+                                      </tr>)                                )
                               }
                           </tbody>
                       </table>
